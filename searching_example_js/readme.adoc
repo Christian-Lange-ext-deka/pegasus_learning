@@ -1,0 +1,9 @@
+
+
+Der Zustand einer Seite sollte sich in der URL wiederspiegeln.
+
+Hier ist das Beispiel einer Suchseite gewählt um das zu verdeutlichen.
+
+In JavaScript kann man dass mittels der https://developer.mozilla.org/en-US/docs/Web/API/History_API[history]
+
+Längenbeschränkung für URLs sollten bis 2.000 Zeichen kein Problem darstellen

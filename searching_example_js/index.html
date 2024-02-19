@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Such Beispiel</title>
+</head>
+<body>
+// hot-wired 2
+<form>
+    <input type="text">
+    <input type="checkbox">
+    <button type="submit">submit</button>
+    <script>
+
+        const queryString = location.search; // Returns:'?q=123'
+
+        // Further parsing:
+        const params = new URLSearchParams(queryString);
+        const q = params.get("q");
+        document.body.querySelector("input").value = q;
+
+        const checked = params.get('checkbox') === 'true';
+        document.body.querySelector("input[type=checkbox]").checked = checked;
+
+        document.body.querySelector("form").addEventListener("submit", event => {
+            event.preventDefault();
+            const query = document.body.querySelector("input").value;
+            const newSearch = new URLSearchParams(location.search);
+            newSearch.set('q', query);
+
+            const checkbox = document.body.querySelector("input[type=checkbox]").checked;
+            newSearch.set('checkbox', checkbox);
+
+            window.history.pushState(null, null, location.href.substring(0, location.href.indexOf('?')) + '?' + newSearch.toString());
+        })
+        window.addEventListener('pushstate', event => {
+            console.log('pushstate');
+            console.log(event);
+        })
+        window.addEventListener('pageshow', event => {
+            console.log('pageshow');
+            console.log(event);
+        })
+
+        window.addEventListener('popstate', event => {
+            console.log('popstate');
+            console.log(event);
+        })
+        window.addEventListener('replace', event => {
+            console.log('replace');
+            console.log(event);
+        })
+        window.addEventListener('devicemotion', event => {
+            console.log('devicemotion');
+            console.log(event);
+        })
+    </script>
+</form>
+</body>
+</html>
